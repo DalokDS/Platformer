@@ -6,7 +6,8 @@ public class Apple : MonoBehaviour
     private Animator _animator;
     private AudioSource _audioSource;
     private bool _isCollected;
-    private int collectAnimation = Animator.StringToHash("Collect");
+    private int _collectAnimation = Animator.StringToHash("Collect");
+    private int _baseAnimationLayer = 0;
 
     private void Awake()
     {
@@ -21,12 +22,8 @@ public class Apple : MonoBehaviour
             basket.AddApple();
             _isCollected = true;
             _audioSource.Play();
-            _animator.SetTrigger(collectAnimation);
+            _animator.SetTrigger(_collectAnimation);
+            Destroy(gameObject, _animator.GetCurrentAnimatorStateInfo(_baseAnimationLayer).length);
         }
-    }
-
-    private void Collect()
-    {
-        Destroy(gameObject);
     }
 }

@@ -27,7 +27,7 @@ public class Saw : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.TryGetComponent(out Player player))
-            player.RestartGame();
+        if (collision.TryGetComponent(out GameRestarter gameRestarter))
+            gameRestarter.RestartGame();
     }
 }
